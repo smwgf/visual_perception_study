@@ -15,4 +15,15 @@ function X = LinearTriangulation(K, C1, R1, C2, R2, x1, x2)
 %       points
 
 
+P1 = K*[R1 C1];
+P2 = K*[R2 C2];
+A =[];
+X = [];
+for i = 1:size(x1,1)
+  skew1 = Vec2Skew([x1(i,:) 1]);
+  skew2 = Vec2Skew([x2(i,:) 1]);
+  A = [skew1*P1;skew2*P2];
+  [U,S,V] = svd(A);
+  X = [X;V(1:3,end)'./V(end,end)];
+end
 

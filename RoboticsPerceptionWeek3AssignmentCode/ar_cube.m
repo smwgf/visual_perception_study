@@ -14,6 +14,18 @@ function [proj_points, t, R] = ar_cube(H,render_points,K)
 
 % YOUR CODE HERE: Extract the pose from the homography
 
+% mason : 
+##H1 = H(:,1);
+##H2 = H(:,2);
+##H3 = cross(H1,H2);
+##Rx = [H1,H2,H3];
+##[U,X,V] = svd(Rx);
+##d = det(U*V');
+##R = U*[1 0 0; 0 1 0; 0 0 det]*V';
+##t = H(:,3)/.norm(H1);
+
 % YOUR CODE HERE: Project the points using the pose
+
+% mason : proj_points = K * H * render_points
 
 end

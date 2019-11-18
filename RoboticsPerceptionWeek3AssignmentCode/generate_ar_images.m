@@ -80,6 +80,7 @@ for i=1:num_frames
                         'Color','black');
     % Find all points in the video frame inside the polygon defined by
     % video_pts
+    % corner is in plane,convert 3D point(K(-1)*corner_pts) remove z axis(pr*(K(-1)*corner_pts))
     p = (pr*(K \ [corners(:,:,i)'; ones(1,4)]))';
     H = est_homography(corner_pts,p);
     [proj_pts, pos{i}, rot{i}] = ar_cube(H,render_points,K);
