@@ -82,7 +82,7 @@ for i=1:num_frames
     % video_pts
     % corner is in plane,convert 3D point(K(-1)*corner_pts) remove z axis(pr*(K(-1)*corner_pts))
     p = (pr*(K \ [corners(:,:,i)'; ones(1,4)]))';
-    H = est_homography(corner_pts,p);
+    H = est_homography(corner_pts,p);    
     [proj_pts, pos{i}, rot{i}] = ar_cube(H,render_points,K);
     % Draw a coordinate frame
     frame = 0.05 * [0 0 0; 1 0 0; 0 1 0; 0 0 1];
@@ -104,4 +104,4 @@ for i=1:num_frames
     generated_imgs{i} = draw_ar_cube(proj_pts,generated_imgs{i}); 
     
 end
-
+play_video(generated_imgs,60);

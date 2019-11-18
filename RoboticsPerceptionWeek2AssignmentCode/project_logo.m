@@ -23,7 +23,7 @@ test_images = 1:num_ima;
 % test_images = [1,4,10];
 
 num_test = length(test_images);
-##num_test = 2
+%num_test = 2
 % Initialize the images
 video_imgs = cell(num_test, 1);
 projected_imgs = cell(num_test, 1);
@@ -50,4 +50,4 @@ for i=1:num_test
         warped_logo_pts); 
 end
 
-##save_images(projected_imgs,'test');
+%save_images(projected_imgs,'test');

@@ -18,10 +18,11 @@ function [C, R] = LinearPnP(X, x, K)
 
 A = [];
 x_c = (K\([x ones(size(x,1),1)]'))';
+x_c = [x_c(:,1:2)./x_c(:,3)];
 % DLT
 for i = 1:size(x_c,1)
-  a_x = [-X(i,:)*x_c(i,2) -x_c(i,2) 0 0 0 0 X(i,:)*x_c(i,1) x_c(i,1)];
-  a_y = [0 0 0 0 -X(i,:)*x_c(i,2) -x_c(i,2) X(i,:)*x_c(i,2) x_c(i,2)];
+  a_x = [-X(i,:) -1 0 0 0 0 X(i,:)*x_c(i,1) x_c(i,1)];
+  a_y = [0 0 0 0 -X(i,:) -1 X(i,:)*x_c(i,2) x_c(i,2)];
   A = [A;a_x;a_y];
 end
 

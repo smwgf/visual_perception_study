@@ -51,5 +51,4 @@ for i = 1:num_frames
                         'FilledCircle',draw_corners{4},...
                         'Color','black');
 end
-
-
+play_video(generated_imgs,60);

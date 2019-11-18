@@ -11,22 +11,21 @@ function [ corners ] = track_corners(images, img_pts_init)
 
 
 % mason:
-##corners = zeros(4,2,size(images,1));
-##
-##%%%% INITIALIZATION CODE FOR TRACKER HERE %%%%
-##tracker = vision.PointTracker('MaxBidirectionalError',1);
-##
-##img_pts = img_pts_init; % img_pts is where you will store the tracked points
-##corners(:,:,1) = img_pts;
-##
-##initialize(tracker,img_pts,images(1));
-##% Iterate through the rest of the images
-##for i = 2:size(images,1)
-##    %%%% CODE FOR TRACKING HERE %%%%
-##    % Store corners and visualize results (if desired)
-##    [img_pts,validity] = tracker(frame);
-##    corners(:,:,i) = img_pts;
-##end
+corners = zeros(4,2,size(images,1));
+
+%%%% INITIALIZATION CODE FOR TRACKER HERE %%%%
+tracker = vision.PointTracker('MaxBidirectionalError',1);
+img_pts = img_pts_init; % img_pts is where you will store the tracked points
+corners(:,:,1) = img_pts;
+
+initialize(tracker,img_pts,cell2mat(images(1)));
+% Iterate through the rest of the images
+for i = 2:size(images,1)
+    %%%% CODE FOR TRACKING HERE %%%%
+    % Store corners and visualize results (if desired)
+    [img_pts,validity] = tracker(cell2mat(images(i)));
+    corners(:,:,i) = img_pts;
+end
 
 end
 
