@@ -31,9 +31,6 @@ function X = Single_Point_Nonlinear_Triangulation(K, C1, R1, C2, R2, C3, R3, x1,
     end
     pre_error = sqr_e;
     J=[Jacobian_Triangulation(C1,R1,K,rep_x1)' Jacobian_Triangulation(C2,R2,K,rep_x2)' Jacobian_Triangulation(C3,R3,K,rep_x3)']';
-##    if(det(J'*J)<1.0e-10)
-##      break;
-##    end
     dX = pinv(J'*J)*J'*e;
     X= (X' + dX)';
   end
